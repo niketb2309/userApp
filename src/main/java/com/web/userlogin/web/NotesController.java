@@ -25,7 +25,6 @@ public class NotesController {
         noteModel.setNoteCreatedTime(new Date(System.currentTimeMillis()));
         Note createdNote=notesService.addNote(noteModel);
         List<Note> noteList = notesService.retrieveNote(createdNote.getUserName());
-
         model.addAttribute("notes",noteList);
         return "notes";
     }
@@ -49,10 +48,6 @@ public class NotesController {
 
     @PostMapping("/updateNote")
     public String updateNote(@ModelAttribute("note") Note note, ModelMap model){
-        System.out.println("Into Update Note::");
-        System.out.println("Update Id:"+ note.getId());
-        System.out.println("Update Title:"+ note.getTitle());
-        System.out.println("Update Description:"+ note.getDescription());
         note.setNoteUpdatedTime(new Date(System.currentTimeMillis()));
         notesService.updateNote(note);
         List<Note> noteList = notesService.retrieveNote(note.getUserName());

@@ -41,7 +41,6 @@ public class UserController {
 
     @GetMapping("/test")
     public ModelAndView test(ModelAndView modelAndView, Login login) {
-
         ModelAndView modelAndView1=new ModelAndView();
         return modelAndView1;
          }
@@ -64,12 +63,9 @@ public class UserController {
 
     @PostMapping("/login")
     public String loginUser(@Valid @ModelAttribute Login loginForm, BindingResult bindingResult, ModelAndView modelAndView) {
-        System.out.println("username:"+loginForm.getUserName());
-        System.out.println("password:"+loginForm.getPassword());
         loginValidator.validate(loginForm, bindingResult);
         if(bindingResult.hasErrors()){
             List<ObjectError> objectErrorList=bindingResult.getAllErrors();
-            System.out.println("Object errors list:"+objectErrorList);
             return "login";
         }
         return "welcome";
@@ -87,21 +83,14 @@ public class UserController {
             return "registration";
         }
         List<ObjectError> objectErrorList=bindingResult.getAllErrors();
-        System.out.println("Object errors list:"+objectErrorList);
-        System.out.println("Into registerUser method");
         User createdUser= userService.save(userForm);
-        System.out.println("userName:"+createdUser.getUserName());
-        System.out.println("userName:"+createdUser.getPassword());
-        System.out.println("address:"+createdUser.getAddress());
-         model.addAttribute("userName",createdUser.getUserName() );
+        model.addAttribute("userName",createdUser.getUserName() );
         return "success";
     }
 
     @GetMapping("/getUser")
     public void getUser(@RequestParam String userName){
-        System.out.println("Into registerUser method");
         User user=userService.getUserByUserName(userName);
-        System.out.println("userName:"+user.getUserName());
     }
 
 

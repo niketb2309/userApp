@@ -20,12 +20,7 @@ public class NotesService {
     UserService userService;
 
    public Note addNote(Note note) {
-       System.out.println(note.getDescription());
-
            Note createdNote = notesRepository.save(note);
-           System.out.println(createdNote.getId());
-           System.out.println(createdNote.getUserName());
-           System.out.println(createdNote.getDescription());
            List<Note> notesList= notesRepository.findAll();
            return createdNote;
     }
@@ -35,21 +30,13 @@ public class NotesService {
         List<Long> notesId=new ArrayList<Long>();
         notesId.add(id);
         notesList=notesRepository.findAllById(notesId);
-        System.out.println("notes"+notesList);
         return notesList;
     }
     public List<Note> retrieveNote(String userName){
         List<Note> notesList=new ArrayList<>();
         notesList=notesRepository.findByUsername(userName);
-        System.out.println("notes"+notesList);
         return notesList;
     }
-
-
-
-   /* public void deleteNote(String noteName){
-        notesRepository.deleteNote(noteName);
-    }*/
 
     public void deleteNote(Long id){
         notesRepository.deleteById(id);

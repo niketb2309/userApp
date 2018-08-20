@@ -14,6 +14,4 @@ public interface NotesRepository extends JpaRepository<Note,Long> {
     @Query(value= "FROM Note note WHERE note.userName = :userName")
     List<Note> findByUsername(@Param("userName") String userName);
 
-  /*  @Query(value= "DELETE FROM Note note WHERE note.noteName = :noteName")
-    Note deleteNote(@Param("noteName") String noteName);*/
 }
