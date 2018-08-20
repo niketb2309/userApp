@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register with Details</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script>
+        history.pushState(null, null, '');
+            window.addEventListener('popstate', function(event) {
+                history.pushState(null, null, '');
+            });
+        history.replaceState({}, null, "/createUser");
+    </script>
+</head>
+
+<body>
+<h1 class="header">Create user</h1>
+<form action="#" method="POST" th:action="@{/createUser}" th:object="${user}" class="form-signin" style="width:400px;">
+    <div class="container">
+
+        <table style="border-collapse: separate; border-spacing: 40px;" align="center">
+            <tr>
+                <td><i class="glyphicon glyphicon-user icon-colour"></i><input th:field="*{userName}" type="text" class="text-line" placeholder="Username"
+                   style="width:250px;" autofocus="true" required/>
+                    <p class="error-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+                </td>
+
+                <td>
+                    <i class="glyphicon glyphicon-user icon-colour"></i>
+                    <input th:field="*{name}" type="text" class="text-line" placeholder="Full Name" style="width:250px;" autofocus="true" required/>
+                    <p class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="glyphicon glyphicon-lock icon-colour"></i>
+                    <input name="password" type="password" class="text-line" placeholder="Password" style="
+                width:250px;" required />
+                <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                </td>
+
+                <td>
+                    <i class="glyphicon glyphicon-lock icon-colour"></i>
+                    <input name="confirmPassword" type="password" class="text-line"
+                           placeholder="Confirm Password" style="width:250px;" />
+                    <p class="error-message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="header">Gender</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="glyphicon glyphicon-user icon-colour"></i>
+                        <span class="header">Male</span>
+                    <input name="gender" type="radio" class="text-line"
+                           placeholder="Male" autofocus="true" style="width:50px;"/>
+                    <p class="error-message" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+                </td>
+
+                <td>
+                    <i class="glyphicon glyphicon-user icon-colour"></i>
+                    <span class="header">Female</span>
+                    <input name="gender" type="radio" class="text-line"
+                           placeholder="Female" autofocus="true" style="width:50px;"/>
+                    <p class="error-message" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+                </td>
+            </tr>
+            <tr>
+                <td><i class="glyphicon glyphicon-phone icon-colour"></i>
+                    <input name="phoneNumber" type="text" class="text-line" placeholder="Mobile Number"
+                           style="width:250px;" autofocus="true" required />
+                <p class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                </td>
+
+                <td><i class="glyphicon glyphicon-envelope icon-colour"></i>
+                    <input name="emailId" type="text" class="text-line" placeholder="Email"
+                           style="width:250px;" autofocus="true" required>
+                <p class="error-message" th:if="${#fields.hasErrors('emailId')}" th:errors="*{emailId}"></p>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <i class="glyphicon glyphicon glyphicon-home icon-colour"></i>
+                    <input name="address" type="text" class="text-line"
+                           placeholder="Address1" style="width:250px;"/>
+                <p class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+                </td>
+
+                <td><i class="glyphicon glyphicon-home icon-colour"></i>
+                    <input name="address" type="text" class="text-line"
+                           placeholder="Address2" style="width:250px;"/>
+                    <p class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td><button class="btn btn-info" role="button" style="width:250px;" type="reset">Reset</button></td>
+                <td><button class="btn btn-success" role="button" style="width:250px;">Register</button></td>
+
+            </tr>
+        </table>
+    </div>
+</form>
+<!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></body>
+</html>
+

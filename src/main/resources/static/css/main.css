@@ -1,0 +1,87 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: green;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid green;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+.text-line {
+        color: yellow;
+        }
+
+h1 {
+    color: #78ab46;
+}
+
+.error-message {
+    color: #a94442;
+}
+
+.error-message:first-letter {
+    text-transform: capitalize;
+}
+
+ body {
+        background: #333333;
+    }
+    .text-line {
+        background-color: transparent;
+        color: white;
+        outline: none;
+        outline-style: none;
+        outline-offset: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: solid #FFFFFF 1px;
+        padding: 3px 10px;
+    }
+
+td {
+    /* <http://www.w3.org/wiki/CSS/Properties/text-align>
+     * left, right, center, justify, inherit
+     */
+    text-align: center;
+    /* <http://www.w3.org/wiki/CSS/Properties/vertical-align>
+     * baseline, sub, super, top, text-top, middle,
+     * bottom, text-bottom, length, or a value in percentage
+     */
+    vertical-align: top;
+}
+    .error-message {
+    #color: #5cb85c;
+    color: #cc0000;
+}
+
+  .header {
+    color: #e6e6d8;
+}
+.icon-colour {
+    color: #e6e6d8;
+}
+}
