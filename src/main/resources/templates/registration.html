@@ -18,6 +18,8 @@
             window.addEventListener('popstate', function(event) {
                 history.pushState(null, null, '');
             });
+             </script>
+    <script>
         history.replaceState({}, null, "/createUser");
     </script>
 </head>
@@ -62,7 +64,7 @@
                     <i class="glyphicon glyphicon-user icon-colour"></i>
                         <span class="header">Male</span>
                     <input name="gender" type="radio" class="text-line"
-                           placeholder="Male" autofocus="true" style="width:50px;"/>
+                           placeholder="Male" autofocus="true" style="width:50px;" required/>
                     <p class="error-message" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
                 </td>
 
@@ -70,7 +72,7 @@
                     <i class="glyphicon glyphicon-user icon-colour"></i>
                     <span class="header">Female</span>
                     <input name="gender" type="radio" class="text-line"
-                           placeholder="Female" autofocus="true" style="width:50px;"/>
+                           placeholder="Female" autofocus="true" style="width:50px;" required/>
                     <p class="error-message" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
                 </td>
             </tr>
@@ -104,10 +106,12 @@
             </tr>
             <br>
             <tr>
-                <td><button class="btn btn-info" role="button" style="width:250px;" type="reset">Reset</button></td>
-                <td><button class="btn btn-success" role="button" style="width:250px;">Register</button></td>
+                <td><button class="btn btn-info " role="button" style="width:250px;" type="reset">Reset</button></td>
+                <td><button class="btn btn-success " role="button" style="width:250px;">Register</button></td>
 
             </tr>
+            <tr>
+               <td> <a href="/" id="cancel" name="cancel" class="btn btn-danger " style="width:220%;">Cancel</a></td> </tr>
         </table>
     </div>
 </form>

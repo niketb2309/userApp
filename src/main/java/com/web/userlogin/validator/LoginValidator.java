@@ -33,18 +33,10 @@ public class LoginValidator implements Validator {
 
         User user=userService.getUserByUserName(login.getUserName());
         if(Objects.isNull(user)){
-            System.out.println("User is null");
             errors.rejectValue("userName","User.NotFound");
         }
         else if(!Objects.equals(login.getPassword(),user.getPassword())||
                 !Objects.equals(login.getUserName(),user.getUserName())){
-
-            System.out.println("userPassword:" +user.getPassword());
-            System.out.println("loginPassword:" +login.getPassword());
-
-            System.out.println("userPassword hashCode"+user.getPassword().hashCode());
-            System.out.println("loginPassword hashCode"+login.getPassword().hashCode());
-
             errors.rejectValue("password", "Incorrect.Password");
         }
     }

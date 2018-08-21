@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class UserController {
     @Autowired
     LoginValidator loginValidator;
 
+    @Autowired
+    HttpSession httpSession;
+
 
     @GetMapping("/")
     public ModelAndView displayLoginpage(ModelAndView modelAndView, Login login) {
@@ -39,17 +43,11 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/test")
-    public ModelAndView test(ModelAndView modelAndView, Login login) {
-        ModelAndView modelAndView1=new ModelAndView();
-        return modelAndView1;
-         }
-
-
     @GetMapping("/logout")
     public ModelAndView logoutUser(ModelAndView modelAndView, Login login) {
+        httpSession.invalidate();
         modelAndView.addObject("login", login);
-        modelAndView.setViewName("login");
+        modelAndView.setViewName("logout");
         return modelAndView;
     }
 
@@ -62,12 +60,13 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String loginUser(@Valid @ModelAttribute Login loginForm, BindingResult bindingResult, ModelAndView modelAndView) {
+    public String loginUser(HttpSession session, @Valid @ModelAttribute Login loginForm, BindingResult bindingResult, ModelAndView modelAndView) {
         loginValidator.validate(loginForm, bindingResult);
         if(bindingResult.hasErrors()){
             List<ObjectError> objectErrorList=bindingResult.getAllErrors();
             return "login";
         }
+        session.setAttribute("userName",loginForm.getUserName());
         return "welcome";
     }
 
@@ -77,12 +76,8 @@ public class UserController {
       String userName=user.getUserName();
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            System.out.println("Validation has errors");
-            List<ObjectError> objectErrorList=bindingResult.getAllErrors();
-            System.out.println("Object errors list:"+objectErrorList);
             return "registration";
         }
-        List<ObjectError> objectErrorList=bindingResult.getAllErrors();
         User createdUser= userService.save(userForm);
         model.addAttribute("userName",createdUser.getUserName() );
         return "success";
@@ -92,8 +87,6 @@ public class UserController {
     public void getUser(@RequestParam String userName){
         User user=userService.getUserByUserName(userName);
     }
-
-
 
     @GetMapping("/welcome")
     public String displayWelcomePage() {

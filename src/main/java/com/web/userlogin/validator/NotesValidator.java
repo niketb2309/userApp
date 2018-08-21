@@ -28,7 +28,8 @@ public class NotesValidator implements Validator {
 
         if (note.getTitle().length() < 6 || note.getTitle().length() > 32) {
             errors.rejectValue("title", "Note.title", "Length should be more than 6 charecters and less than 32");
-        } else if (note.getDescription().length() < 6) {
+        }
+        if (note.getDescription().length() < 6) {
             errors.rejectValue("description", "Note.title", "Length should be more than 6 charecters");
         }
 

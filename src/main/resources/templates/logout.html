@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Log in with your credentials</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/logout.js"></script>
+    <style>
+
+.error-message {
+    #color: #5cb85c;
+    color: #ff9494;
+}
+.header {
+    color: #e6e6d8;
+}
+</style>
+    <script>
+   history.pushState(null, null, '');
+              window.addEventListener('popstate', function(event) {
+                  history.pushState(null, null, '');
+              });
+     </script>
+     <script>
+          history.replaceState({}, null, "/");
+    </script>
+</head>
+
+<body background="/images/loginPage_background-2.jpg">
+<div class="container">
+
+    <div class="row" style="margin-top:20px">
+        <div class="form-group " align="left">
+            </br> </br> </br> </br> </br></br> </br> </br>
+            <h2 class="header">Log in</h2>
+            </br>
+            <form th:action="@{/login}" method="post" th:object="${login}">
+                <fieldset>
+
+
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">
+                            Invalid username and password.
+                        </div>
+                    </div>
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">
+                            You have been logged out.
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="text" name="userName" class="form-control input-lg"
+                               placeholder="User Name"  style="width:220px;" required="true" autofocus="true"/>
+                        <p class="error-message animated animated.flipOutX
+animated.flipOutY " th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control input-lg" style="width:220px;"       placeholder="Password" required="true"/>
+                    </div>
+
+                    <button class="btn btn-success" role="button" style="width:220px;">Log In</button>
+
+                </fieldset>
+            </form>
+            </br>
+            <form th:action="@{/register}" method="GET">
+                <fieldset>
+                    <button class="btn btn-info" style="width:220px;">Sign Up</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div align="left">
+
+    </div>
+</div>
+</body>
+</html>

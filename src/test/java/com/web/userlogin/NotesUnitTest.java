@@ -134,22 +134,6 @@ public class NotesUnitTest {
     }
 
     @Test
-    public void test_Title_validation(){
-        noteForm.setTitle("My PC");
-        Errors errors = new BeanPropertyBindingResult(noteForm, "user");
-        notesValidator.validate(noteForm, errors);
-        Assert.assertEquals(errors.getFieldError("title").getDefaultMessage(),"Length should be more than 6 charecters and less than 32");
-    }
-
-    @Test
-    public void test_Description_validation(){
-        noteForm.setDescription("Done");
-        Errors errors = new BeanPropertyBindingResult(noteForm, "user");
-        notesValidator.validate(noteForm, errors);
-        Assert.assertEquals(errors.getFieldError("description").getDefaultMessage(),"Length should be more than 6 charecters");
-    }
-
-    @Test
     public void test_DeleteNote(){
         Note note= testHelper.createNote();
         doNothing().when(mockNotesService).deleteNote(note.getId());

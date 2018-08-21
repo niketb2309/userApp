@@ -45,7 +45,6 @@ public class TestHelper {
                 "9177513622","Female");
 
         User createdUser1=userService.save(user1);
-        System.out.println("Created User:" + createdUser1.getUserName());
         User createdUser2=userService.save(user2);
         User createdUser3=userService.save(user3);
 

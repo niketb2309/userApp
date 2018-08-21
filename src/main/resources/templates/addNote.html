@@ -16,7 +16,7 @@
 
     <div class="myForm">
         <form action="/addNote" method="POST">
-            <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog"           aria-labelledby="exampleModalLabel"                   aria-hidden="true">
+            <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog"           aria-labelledby="addNoteModal"                   aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -28,11 +28,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="title" class="form-control-label">Title</label>
-                                <input type="text" class="form-control" id="title" name="title"/>
+                                <input type="text" class="form-control" id="title" name="title" required/>
                             </div>
                             <div class="form-group">
                                 <label for="description" class="form-control-label">Description</label>
-                                <input type="text" class="form-control" id="description" name="description"/>
+                                <input type="text" class="form-control" id="description" name="description" required/>
                             </div>
                         </div>
                         <div class="modal-footer">
