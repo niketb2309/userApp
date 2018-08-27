@@ -65,14 +65,6 @@
                 </thead>
                 <tbody>
                 <tr th:each = "note: ${notes}" class="info" >
-                    <td  th:if="!${note.title}">
-                        <p style="color:#78ab46;" align="center">
-                            <font size="5">
-                                Notes not available for the user.<br>
-                                Please add notes from above.
-                            </font>
-                        </p>
-
                     <td th:text ="${note.title}"/>
                     <td th:text="${note.description}"/>
                     <td th:text="${note.noteCreatedTime}"/>
@@ -143,7 +135,7 @@
     </div>
 </div>
 <div class="noteForm">
-    <form th:action="@{/addNote}" method="post" th:object="${note}" onsubmit="return validateField()">
+    <form th:action="@{/addNote}" method="post" th:object="${note}" onsubmit="validateField()">
         <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog"           aria-labelledby="addNoteModalLabel"                   aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
