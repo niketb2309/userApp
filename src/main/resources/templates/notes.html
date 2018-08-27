@@ -13,7 +13,6 @@
     <script src="js/main.js"></script>
     <script src="js/notes.js"></script>
     <link rel="stylesheet" href="/css/main.css">
-
     <script>
   history.pushState(null, null, '');
             window.addEventListener('popstate', function(event) {
@@ -23,7 +22,6 @@
     <script>
           history.replaceState({}, null, "/getNotes");
     </script>
-
     <style>
 
         .error-message {
@@ -34,21 +32,22 @@
 </head>
 <body background ="/images/registration_1.jpg" bgcolor="#FAFAD2	">
 <h2 class="heading"> My Notes List</h2>
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Notes</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a th:href="@{welcome}">Home</a></li>
-            <li><a th:href ="@{logout}">Logout</a></li>
+            <li class="active">
+                <a th:href="@{welcome}">Home</a>
+            </li>
+            <li>
+                <a th:href ="@{logout}">Logout</a>
+            </li>
         </ul>
     </div>
 </nav>
-
 <div class="container">
-
     <a href="/addNote" align="right" class="glyphicon glyphicon-plus addBtn" id="addBtn"></a>
     </br>
     <div class="card">
@@ -66,6 +65,14 @@
                 </thead>
                 <tbody>
                 <tr th:each = "note: ${notes}" class="info" >
+                    <td  th:if="!${note.title}">
+                        <p style="color:#78ab46;" align="center">
+                            <font size="5">
+                                Notes not available for the user.<br>
+                                Please add notes from above.
+                            </font>
+                        </p>
+
                     <td th:text ="${note.title}"/>
                     <td th:text="${note.description}"/>
                     <td th:text="${note.noteCreatedTime}"/>
@@ -83,7 +90,7 @@
     </div>
 </div>
 <div class="myForm">
-    <form th:action="@{/updateNote}" method="POST"  th:object="${note}">
+    <form th:action="@{/updateNote}" method="POST"  th:object="${note}" onsubmit="return validateField()">
         <div class="modal fade" id="updateNoteModal" tabindex="-1" role="dialog"           aria-labelledby="updateNoteModalLabel"                   aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -127,14 +134,16 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-info" data-dismiss="modal">Close</button>
-                    <a href="" id="delNoteId"><button class="btn btn-danger">Delete</button></a>
+                    <a href="" id="delNoteId">
+                        <button class="btn btn-danger">Delete</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="noteForm">
-        <form th:action="@{/addNote}" method="post" th:object="${note}">
+    <form th:action="@{/addNote}" method="post" th:object="${note}" onsubmit="return validateField()">
         <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog"           aria-labelledby="addNoteModalLabel"                   aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -148,9 +157,7 @@
                         <div class="form-group">
                             <label for="title" class="form-control-label">Title</label>
                             <input type="text" class="form-control" id="noteTitle" name="title" required/>
-
                         </div>
-
                         <div class="form-group">
                             <label for="description" class="form-control-label">Description</label>
                             <input type="text" class="form-control" id="noteDescription" name="description" required/>
@@ -158,7 +165,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" onclick="validateField()" class="btn btn-primary" value="Save"/>
+                        <input type="submit" class="btn btn-primary" value="Save" />
                     </div>
                 </div>
             </div>
