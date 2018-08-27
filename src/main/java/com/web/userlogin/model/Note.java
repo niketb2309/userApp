@@ -77,4 +77,16 @@ public class Note {
         this.noteUpdatedTime = noteUpdatedTime;
     }
 
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", noteCreatedTime=" + noteCreatedTime +
+                ", noteUpdatedTime=" + noteUpdatedTime +
+                '}';
+    }
 }

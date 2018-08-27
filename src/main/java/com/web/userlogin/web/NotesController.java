@@ -3,6 +3,8 @@ package com.web.userlogin.web;
 import com.web.userlogin.model.Note;
 import com.web.userlogin.service.NotesService;
 import com.web.userlogin.validator.NotesValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.lang.invoke.MethodHandles;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +29,9 @@ public class NotesController {
     @Autowired
     NotesValidator notesValidator;
 
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+
     @PostMapping("/addNote")
     public ModelAndView addNote(Note noteModel, BindingResult bindingResult, ModelMap model, ModelAndView modelAndView) {
         modelAndView.addObject("note", noteModel);
@@ -33,6 +39,7 @@ public class NotesController {
         noteModel.setUserName(httpSession.getAttribute("userName").toString());
         noteModel.setNoteCreatedTime(new Date(System.currentTimeMillis()));
         Note createdNote=notesService.addNote(noteModel);
+        log.debug("Note Created Details:",createdNote.toString());
         List<Note> noteList = notesService.retrieveNote(createdNote.getUserName());
         model.addAttribute("notes",noteList);
         modelAndView.setViewName("notes");
@@ -65,7 +72,8 @@ public class NotesController {
         modelAndView.addObject("note", note);
         modelAndView.setViewName("notes");
         note.setNoteUpdatedTime(new Date(System.currentTimeMillis()));
-        notesService.updateNote(note);
+        Note updatedNote=notesService.updateNote(note);
+        log.debug("Note Updated Details:",updatedNote.toString());
         String userName=httpSession.getAttribute("userName").toString();
         List<Note> noteList = notesService.retrieveNote(userName);
         model.put("notes", noteList);

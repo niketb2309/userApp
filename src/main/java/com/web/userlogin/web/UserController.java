@@ -5,6 +5,8 @@ import com.web.userlogin.model.User;
 import com.web.userlogin.service.UserService;
 import com.web.userlogin.validator.LoginValidator;
 import com.web.userlogin.validator.UserValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 @Controller
@@ -35,6 +38,7 @@ public class UserController {
     @Autowired
     HttpSession httpSession;
 
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @GetMapping("/")
     public ModelAndView displayLoginpage(ModelAndView modelAndView, Login login) {
@@ -79,6 +83,7 @@ public class UserController {
             return "registration";
         }
         User createdUser= userService.save(userForm);
+        log.debug("User Created Details:",createdUser.toString());
         model.addAttribute("userName",createdUser.getUserName() );
         return "success";
     }
