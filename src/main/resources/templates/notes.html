@@ -82,7 +82,7 @@
     </div>
 </div>
 <div class="myForm">
-    <form th:action="@{/updateNote}" method="POST"  th:object="${note}" onsubmit="return validateField()">
+    <form th:action="@{/updateNote}" method="POST"  th:object="${note}" onsubmit="validateUpdateFields()">
         <div class="modal fade" id="updateNoteModal" tabindex="-1" role="dialog"           aria-labelledby="updateNoteModalLabel"                   aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
