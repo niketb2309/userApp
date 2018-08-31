@@ -2,6 +2,7 @@ package com.web.userlogin.web;
 
 import com.web.userlogin.model.Login;
 import com.web.userlogin.model.User;
+import com.web.userlogin.service.NotesService;
 import com.web.userlogin.service.UserService;
 import com.web.userlogin.validator.LoginValidator;
 import com.web.userlogin.validator.UserValidator;
@@ -40,6 +41,9 @@ public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    @Autowired
+    private NotesService notesService;
+
     @GetMapping("/")
     public ModelAndView displayLoginpage(ModelAndView modelAndView, Login login) {
         modelAndView.addObject("login", login);
@@ -71,6 +75,8 @@ public class UserController {
             return "login";
         }
         session.setAttribute("userName",loginForm.getUserName());
+        List notesList=notesService.retrieveNote(loginForm.getUserName());
+        session.setAttribute("userNotes",notesList);
         return "welcome";
     }
 
@@ -95,8 +101,8 @@ public class UserController {
 
     @GetMapping("/welcome")
     public String displayWelcomePage() {
+        List notesList=notesService.retrieveNote((String)httpSession.getAttribute("userName"));
+        httpSession.setAttribute("userNotes",notesList);
         return "welcome";
     }
-
 }
-

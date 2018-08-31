@@ -22,6 +22,9 @@
     <script>
           history.replaceState({}, null, "/getNotes");
     </script>
+
+
+
     <style>
 
         .error-message {
@@ -30,7 +33,7 @@
 }
     </style>
 </head>
-<body background ="/images/registration_1.jpg" bgcolor="#FAFAD2	">
+<body background ="/images/registration_1.jpg" bgcolor="#FAFAD2	" >
 <h2 class="heading"> My Notes List</h2>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -73,7 +76,7 @@
                         <a th:href="|/findOne?id=${note.id}|" class="glyphicon glyphicon-pencil eBtn" id="eBtn"/>
                     </td>
                     <td>
-                        <a th:href="|/deleteNote?id=${note.id}|" class= "glyphicon glyphicon-trash delBtn"/>
+                        <a th:href="|/deleteNote?id=${note.id}|"                                      class= "glyphicon glyphicon-trash delBtn" th:onclick="'validateUserNotes();'" ></a>
                     </td>
                 </tr>
                 </tbody>
@@ -127,6 +130,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-info" data-dismiss="modal">Close</button>
                     <a href="" id="delNoteId">
+                        <!--<button class="btn btn-danger" onsubmit="'validateUserNotes(\'' + ${session.userNotes} + '\' );'">Delete</button>-->
                         <button class="btn btn-danger">Delete</button>
                     </a>
                 </div>
@@ -166,4 +170,18 @@
 </div>
 </div>
 </body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+   function validateUserNotes(){
+    var userNotes = [[${session.userNotes}]];
+
+        if(userNotes=='')
+     { event.preventDefault();
+       document.getElementById("delBtn").onload = alert("Notes not available, Please add notes");
+       return false;
+     }
+       return true;
+    }
+    /*]]>*/
+</script>
 </html>

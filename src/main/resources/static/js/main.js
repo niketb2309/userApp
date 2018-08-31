@@ -33,3 +33,16 @@ function validateNotes() {
     }
     return true;
 }
+
+
+/*function validateUserNotes(userNotes){
+    alert("Into function");
+    var validateUserNotes = userNotes;
+    alert(validateUserNotes.length);
+    if(validateUserNotes.length ==2)
+     { event.preventDefault();
+       alert("Notes not available, Please add notes");
+       return false;
+     }
+       return true;
+    }*/

@@ -1,7 +1,8 @@
 $(document).ready(function() {
     $('.addBtn').on('click', function(event) {
-        $('.myForm #title').val('');
-        $('.myForm #description').val('');
-        $('.myForm #addNoteModal').modal();
+        event.preventDefault();
+        $('.noteForm #title').val('');
+        $('.noteForm #description').val('');
+        $('.noteForm #addNoteModal').modal();
     });
 });

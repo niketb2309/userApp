@@ -52,6 +52,7 @@ public class NotesController {
         notesService.deleteNote(id);
         List<Note> noteList = notesService.retrieveNote(note.getUserName());
         model.put("notes", noteList);
+        httpSession.setAttribute("userNotes",noteList);
         return "notes";
     }
 
@@ -62,6 +63,7 @@ public class NotesController {
         String userName=httpSession.getAttribute("userName").toString();
         List<Note> noteList = notesService.retrieveNote(userName);
         model.put("notes", noteList);
+        httpSession.setAttribute("userNotes",noteList);
         return modelAndView;
 
     }
